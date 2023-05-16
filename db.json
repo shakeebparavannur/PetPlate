@@ -1,0 +1,85 @@
+{
+  "pet": [],
+  "foodCategory": [],
+  "food": [
+    {
+      "id":1,
+      "name":"food-1",
+      "type":"paste",
+      "pet":"dog",
+      "quantity":"500g",
+      "price":200,
+      "stockCount":200
+      
+    },
+    {
+      "id":2,
+      "name":"food-2",
+      "type":"dry",
+      "pet":"dog",
+      "quantity":"500g",
+      "price":250,
+      "stockCount":200
+    },
+    {
+      "id":3,
+      "name":"food-3",
+      "type":"paste",
+      "pet":"cat",
+      "quantity":"500g",
+      "price":200,
+      "stockCount":200
+    },
+    {
+      "id":4,
+      "name":"food-4",
+      "type":"dry",
+      "pet":"cat",
+      "quantity":"500g",
+      "price":230,
+      "stockCount":200
+    }
+  ],
+  "user": [
+    {
+      "username": "shazz",
+      "fullname": "shakeebKp",
+      "phone": "9605896100",
+      "email": "shakeebparavannur@gmail.com",
+      "password": "1234",
+      "id": 1
+    },
+    {
+      "username": "shakeeb",
+      "fullname": "shakeebKp",
+      "phone": "9605896100",
+      "email": "shakeebparavannur@gmail.com",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "username": "shake",
+      "fullname": "shakeebKp",
+      "phone": "9605896100",
+      "email": "shakeebparavannur@gmail.com",
+      "password": "1234",
+      "id": 3
+    },
+    {
+      "username": "shaz",
+      "fullname": "shakeebKp",
+      "phone": "9605896101",
+      "email": "shakeebparavannr@gmail.com",
+      "password": "1234",
+      "id": 4
+    },
+    {
+      "username": "shakeebkp",
+      "fullname": "shakeebKp",
+      "phone": "9605891001",
+      "email": "shakeebpaavannur@gmail.com",
+      "password": "1234",
+      "id": 5
+    }
+  ]
+}
