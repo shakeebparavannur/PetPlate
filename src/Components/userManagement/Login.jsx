@@ -26,6 +26,8 @@ const Login = () => {
       if (user) {
         navigate('/');
         localStorage.setItem('username', user.username);
+        localStorage.setItem('UserId', user.id);
+        localStorage.setItem('login',true);
       } else {
         errors.form = 'Username and password do not match';
       }

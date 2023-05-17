@@ -5,7 +5,7 @@ import React, { useState, useRef } from "react";
 const SignUp = () => {
   const [error, setError] = useState({});
   const formRef = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const Validate = async (data) => {
     const errors = {};
@@ -13,7 +13,7 @@ const SignUp = () => {
       errors.username = "username is a required field";
     } else if (data.username.length <= 3) {
       errors.username = "username must be at least 4 characters";
-    } else  {
+    } else {
       try {
         const response = await axios.get(`http://localhost:3000/user`);
         const userData = response.data;
@@ -22,18 +22,15 @@ const SignUp = () => {
         const uniquePhone = userData.map((user) => user.phone);
         if (uniqueUser.includes(data.username)) {
           errors.username = "username already exists";
-        }
-        else if (uniqueEmail.includes(data.email)){
+        } else if (uniqueEmail.includes(data.email)) {
           errors.email = "email already exists";
-        }
-        else if (uniquePhone.includes(data.phone)){
+        } else if (uniquePhone.includes(data.phone)) {
           errors.phone = "phone already exists";
         }
       } catch (error) {
         errors.message = "Error fetching userdatas" + error;
       }
     }
-
 
     return errors;
   };
@@ -42,21 +39,21 @@ const SignUp = () => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const userData = Object.fromEntries(formData.entries());
+    const userDataNew = {...userData,cart:[]};
     const newErrors = await Validate(userData);
     setError(newErrors);
     if (Object.keys(newErrors).length === 0) {
       axios
-        .post("http://localhost:3000/user", userData)
+        .post("http://localhost:3000/user", userDataNew)
         .then((response) => {
           console.log(response.data);
-          formRef.current.reset()
-          navigate('/login')
+          formRef.current.reset();
+          navigate("/login");
         })
         .catch((err) => {
           console.log(err);
-        });   
+        });
     }
-    
   };
 
   return (

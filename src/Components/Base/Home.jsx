@@ -5,7 +5,7 @@ import AllProduct from '../Product/AllProduct'
 const Home = () => {
   return (
     <>
-    <NavBar/>
+    Home
     <AllProduct/>
     </>
   )
