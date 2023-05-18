@@ -8,6 +8,7 @@ import AllProduct from './Components/Product/AllProduct'
 import { BrowserRouter, Routes,Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './Components/Base/Navbar'
+import Cart from './Components/Cart/Cart'
 
 export const logginUser = localStorage.getItem('UserId')
 export const login = localStorage.getItem('login')
@@ -30,6 +31,7 @@ function App() {
         <Route path="Login" element={<Login />}/>
         <Route path="SignUp" element={<SignUp />}/>
         <Route path="AllProduct" element={<AllProduct />}/>
+        <Route path="cart" element={<Cart />}/>
       </Routes>
     </ProductComponent.Provider>
     </BrowserRouter>

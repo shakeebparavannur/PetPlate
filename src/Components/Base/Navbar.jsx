@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const log = localStorage.getItem('login');
+  const log = localStorage.getItem("login");
   const logout = () => {
     localStorage.setItem("login", false);
     localStorage.setItem("username", "");
@@ -43,6 +43,11 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/contact">
               Contact Us
             </Nav.Link>
+            {log == "true" && (
+              <Nav.Link as={Link} to="/cart">
+                Cart
+              </Nav.Link>
+            )}
             {log === "true" ? (
               <Nav.Link as={Link} onClick={() => logout()}>
                 Logout

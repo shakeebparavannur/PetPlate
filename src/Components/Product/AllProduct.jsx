@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AllProduct = () => {
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState([]);
   const userId = localStorage.getItem("UserId");
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get("http://localhost:3000/food").then((response) => {
@@ -35,6 +37,7 @@ const AllProduct = () => {
     }
 
     axios.put(`http://localhost:3000/user/${userId}`, user);
+    console.log(cart);
   };
 
   return (
