@@ -1,13 +1,19 @@
 import axios from "axios";
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Card, Container, Row , Col } from "react-bootstrap";
+import useAddCart from "../useAddCart";
+import CartButton from "./CartButton";
+// import { MemoisedButton } from "./CartButton";
 
 const AllProduct = () => {
   const [products, setProducts] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({ cart: [] });
+  const [cart, setCart] = useState(true)
+  const [addToCart,state] = useAddCart();
   const userId = localStorage.getItem("UserId");
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const login = localStorage.getItem("login");
   useEffect(() => {
     axios.get("http://localhost:3000/food").then((response) => {
       setProducts(response.data);
@@ -16,50 +22,38 @@ const AllProduct = () => {
       console.log(response.data);
       setUser(response.data);
     });
-  }, []);
-  console.log(products);
+  }, [state]);
+ const addPro =  useCallback(()=>{
+    
+ })
 
-  const addToCart = (productId, productName, userId, price) => {
-    const cart = user.cart;
-    const existingProduct = cart.find(
-      (product) => product.productId === productId
-    );
-
-    if (existingProduct) {
-      existingProduct.quantity++;
-    } else {
-      cart.push({
-        productId,
-        productName,
-        quantity: 1,
-        price,
-      });
-    }
-
-    axios.put(`http://localhost:3000/user/${userId}`, user);
-    console.log(cart);
-  };
-
-  return (
-    <div>
+return (
+    <Container>
+      <Row>
       {products.map((product) => {
+        const existingProduct1 = user.cart.find((p) => p.productId == product.id);
         return (
-          <div key={product.id}>
-            <h1>Name:{product.name}</h1>
-            <h3>Price:{product.price}</h3>
-            <h4>Weight:{product.quantity}</h4>
-            <button
-              onClick={() =>
-                addToCart(product.id, product.name, userId, product.price)
-              }
-            >
-              Add to Cart
-            </button>
-          </div>
+          <Col key={product.id} sm={6} md={4} lg={3} xl={2}>
+          <Card  className="my-4">
+            <Card.Body>
+            <Card.Img variant="top" src={product.image} />
+              <Card.Title>{product.name}</Card.Title>
+              <Card.Text>
+                Price: {product.price}
+                <br />
+                Weight: {product.quantity}
+              </Card.Text>
+              
+              {existingProduct1 ? <CartButton action = {()=>navigate('/cart')} name = 'Go to Cart' variant="primary" /> :<CartButton action = {()=>addToCart(product.id, product.name, userId, product.price)} name='addtocart' variant="success"/>}
+            </Card.Body>
+          </Card>
+          </Col>
         );
       })}
-    </div>
-  );
+            </Row>
+    </Container>
+  )
+  
 };
 
 export default AllProduct;

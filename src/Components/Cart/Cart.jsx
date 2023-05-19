@@ -1,39 +1,74 @@
 import React, { useEffect, useState } from "react";
-import { logginUser } from "../../App";
 import axios from "axios";
+import { Button, Card, Container } from "react-bootstrap";
 
 const Cart = () => {
-  const quantityIncrement = ((q)=> q++
-  )
-  const quantityDecrement = ((q)=>
-    q--)
   const userId = localStorage.getItem("UserId");
-  const [cart , setCart] = useState([])
-  useEffect(()=>{
-    axios.get(`http://localhost:3000/user/${userId}`)
-    .then((response=>{setCart(response.data.cart)}))
-  },[])
-  console.log(cart);
-  return <div>
+  
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/user/${userId}`).then((response) => {
+      setCart(response.data.cart);
+    });
+  }, []);
+
+  const handleQuantityIncrement = (productId) => {
+    const updatedCart = cart.map((item) => {
+      if (item.productId === productId) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
+  const handleQuantityDecrement = (productId) => {
+    const updatedCart = cart.map((item) => {
+      if (item.productId === productId && item.quantity > 1) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
+  return (
+    <Container>
       <h1>Cart</h1>
-      {cart.map((c)=>{
-        return(
-          <div style={{border:"1px solid "}}>
-        <h1>Name: {c.productName}</h1>
-        <h4>Quantity: {c.quantity}</h4>
-        <h4>price: {c.quantity*c.price}</h4>
-        <button onClick={()=>{
-          quantityIncrement(c.quantity)
-        }}>+</button>
-        <button onClick={()=>{
-          quantityDecrement(c.quantity)
-        }}>-</button>
-          </div>
-        
-        )
-      })}
-      {console.log(cart)}
-  </div>;
+      {cart.map((item) => (
+        <Card key={item.productId} className="my-4">
+          <Card.Body>
+            <Card.Title>Name: {item.productName}</Card.Title>
+            <Card.Text>
+              Quantity: {item.quantity}
+              <br />
+              Price: {item.quantity * item.price}
+            </Card.Text>
+            <Button
+              onClick={() => handleQuantityIncrement(item.productId)}
+              variant="primary"
+              className="mr-2"
+            >
+              +
+            </Button>
+            <Button
+              onClick={() => handleQuantityDecrement(item.productId)}
+              variant="danger"
+            >
+              -
+            </Button>
+          </Card.Body>
+        </Card>
+      ))}
+    </Container>
+  );
 };
 
 export default Cart;

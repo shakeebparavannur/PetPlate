@@ -4,43 +4,47 @@
   "food": [
     {
       "id": 1,
-      "name": "food-1",
+      "name": "Whiskas",
       "type": "paste",
       "pet": "dog",
       "quantity": "500g",
       "price": 200,
       "stockCount": 200,
-      "promotion": true
+      "promotion": true,
+      "image": "https://cdn.shopify.com/s/files/1/0312/8826/2795/products/3_bc3a3aec-27ac-4593-bb7c-9bd3de40575d_652x652.png?v=1676416908"
     },
     {
       "id": 2,
-      "name": "food-2",
+      "name": "Pedigree",
       "type": "dry",
       "pet": "dog",
       "quantity": "500g",
       "price": 250,
       "stockCount": 200,
-      "promotion": true
+      "promotion": true,
+      "image": "https://cdn.shopify.com/s/files/1/0312/8826/2795/products/2_e41952cd-7284-43d4-8b09-06f9ce7264b8_652x652.jpg?v=1657887914"
     },
     {
       "id": 3,
-      "name": "food-3",
+      "name": "drools",
       "type": "paste",
       "pet": "cat",
       "quantity": "500g",
       "price": 200,
       "stockCount": 200,
-      "promotion": true
+      "promotion": true,
+      "image": "https://cdn.shopify.com/s/files/1/0312/8826/2795/products/71Lc0ITvEQL._SL1500_652x652.jpg?v=1656599745"
     },
     {
       "id": 4,
-      "name": "food-4",
+      "name": "Chappi",
       "type": "dry",
       "pet": "cat",
       "quantity": "500g",
       "price": 230,
       "stockCount": 200,
-      "promotion": false
+      "promotion": false,
+      "image": "https://cdn.shopify.com/s/files/1/0312/8826/2795/products/20_5e2cee3c-8f1b-41fb-87e2-832159cecf6c_652x652.jpg?v=1651140439"
     }
   ],
   "user": [
@@ -54,18 +58,24 @@
         {
           "productId": 1,
           "productName": "food-1",
-          "quantity": 12,
+          "quantity": 1,
           "price": 200
         },
         {
           "productId": 2,
           "productName": "food-2",
-          "quantity": 2,
+          "quantity": 1,
           "price": 250
         },
         {
+          "productId": 3,
+          "productName": "drools",
+          "quantity": 1,
+          "price": 200
+        },
+        {
           "productId": 4,
-          "productName": "food-4",
+          "productName": "Chappi",
           "quantity": 1,
           "price": 230
         }
